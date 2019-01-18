@@ -1,0 +1,24 @@
+连接到数据库部分
+<%@ page import = "java.sql.*" %>
+
+<%
+	String DB_URL = "jdbc:mysql://localhost:3306/cmdb" + "?serverTimezone=GMT%2B8";
+	String USER = "root";
+	String PASSWD = "e=2.71828";
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con = DriverManager.getConnection(DB_URL,USER,PASSWD);
+	out.print("conn success</br>");
+	Statement stmt = con.createStatement();
+	ResultSet res = stmt.executeQuery("select * from course");
+	out.print("stmt success</br>");
+	while(res.next()){
+		out.print(res.getString("name")+"</br>");
+	}
+%>
+
+post方法提交表单
+<form action="" method="post">
+	query:
+	<input type = "text" name = "query"/>
+	<input type = "submit" value = "submit"/> 
+</form>
